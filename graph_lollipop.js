@@ -16,7 +16,7 @@ let x_pop = d3.scaleLinear()
 // TODO: Create a scale band for the y axis (artist)
 let y_pop = d3.scaleBand()
     .range([0, graph_3_height - margin.top - margin.bottom])
-    .padding(0.1);  // Improves readability
+    .padding(0.9);  // Improves readability
 /*
     Here we will create global references to the x and y axis with a fixed range.
     We will update the domain of the axis in the setData function based on which data source
@@ -28,7 +28,7 @@ let countRef_pop = svg_pop.append("g");
 // Set up reference to y axis label to update text in setData
 let y_axis_label_pop = svg_pop.append("g");
 
-let xAxis = svg_pop.append("g")
+let x_axis_label_pop = svg_pop.append("g")
   .attr("transform", `translate(0,${graph_3_height - margin.top - margin.bottom})`);
 
 // x-axis label
@@ -67,8 +67,9 @@ let build_lollipop_graph = (year=null) => {
     y_pop.domain(data_pop.map(d => d['genre']));
 
     // render x axis
-    xAxis.transition().duration(1000).call(d3.axisBottom(x_pop));
+    x_axis_label_pop.transition().duration(1000).call(d3.axisBottom(x_pop));
     // TODO: Render y-axis label
+    // y_axis_label_pop.call(d3.axisLeft(y_pop).tickSize(0).tickPadding(10));
     y_axis_label_pop.call(d3.axisLeft(y_pop).tickSize(0).tickPadding(10));
 
     // // Render the bar elements on the DOM
