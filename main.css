@@ -1,12 +1,61 @@
+body {
+    /* background-color: #f0ead6; */
+    background-color: #f8f8ff;
+    /* background-color: #fff; */
+    /* background-color: #F6E4F6; */
+}
+
 .header {
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
-.header > h3, h5 {
+.header > h3, h4, h5 {
     margin: 0;
     padding-top: 20px;
     text-align: center;
 }
 
+
+html {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#year {
+    width: 80px;
+    padding-left: 5px;
+}
+
+.g2-title {
+    text-align: center;
+    font-size: 15px;
+    margin-left: 310px;
+}
 /* Include any custom CSS styling here! */
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    /* width: 60px; */
+    /* height: 28px; */
+    padding: 4px;
+    font: 10px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+input {
+    background-color: inherit;
+    border: 1px solid #aaa;
+}
+
+.responses {
+    margin: 0 20% 10rem;
+}

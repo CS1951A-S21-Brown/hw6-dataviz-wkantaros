@@ -4,25 +4,123 @@
         <meta charset="utf-8">
         <title>Assignment 6 &laquo; Data Visualization Dashboard&raquo;</title>
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="main.css"/>
+        <link rel="stylesheet" href="main.css?t=[timestamp]" />
         <!--Feel free to add more CSS files as needed-->
         <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
     </head>
 <body>
     <div class="header">
-        <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
+        <h3>Video Game Sales</h3>
+    </div>
+    <div class="center">
+        <label id="yearLabel" for="year">Year (1980-2016):</label>
+        <input id="year" type="number" class="span2" data-slider-min="1980" data-slider-max="2016" data-slider-step="1" value="2010"/>
+        <button type="button" id="update-year">Update Year</button>
+        <button type="button" id="all-years">Show All Years</button>
     </div>
     <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
     <div class="row">
         <div class="col-lg-6">
             <div id="graph1"></div>
+            <span class="g2-title">title</span>
             <div id="graph2"></div><br/>
         </div>
         <div class="col-lg-6">
             <div id="graph3"></div>
         </div>
     </div>
+    <div class="row">
+        <div class="header">
+            <h4>Written Questions</h4>
+        </div>
+        <div class="responses">
+            1) Describe how your dashboard answers the questions presented. You don't have to address every question
+            directly, but should at a high level address the main questions. (10 points)
+            <br/>
+            <br/>
+            Our boss wants to know the top 10 video games of all time or top 10 for a specific year. In the top left
+            graph, we answer exactly that. The bar graph shows the 10 highest selling video games for each year (or
+            all time when the "Show all years" button is toggled), with the names of the video games on the y axis and
+            the sales count as the x axis. 
+            <br/>
+            Our boss also wants to know which genre is most popular. In the bottom left graph, we answer exactly that.
+            The map shows the top selling video games genre by region (North America, Japan, Europe, and Other) for the
+            corresponding time-range. Hovering over each country will display the genre most popular in that region. 
+            <br/>
+            Finally, our boss wants to know which publisher to use for each genre of game. In the right-hand graph, we answer
+            exactly that. The lollipop graph displays the total number of sales by the leading publisher for each genre for
+            the corresponding time frame. Calculating the publisher with the most sales by genre by year felt like a very reasonable
+            means to determine this result.
+            <br/>
+            <br/>
+            2) List 3 reasons why D3 was helpful and improved your visualization (6 points)
+            <br/>
+            <br/>
+            - D3 made it incredibly easy to link data with svg objects (would be a pain to do with plain js)
+            <br>
+            - D3 has great helper functions that allowed me to store all relevant graph data in one location
+            (rather than having to isolate my html from css from js, everything graph-related is rendered in one place)
+            <br>
+            - D3 allows me to dynamically update my data in real time, without having to refer to a server or needing to rerender
+            the page in order to update the data
+            <br/>
+            <br/>
+            3) List 3 reasons why D3 would <b>not</b> be the best tool for creating a visualization (6 points)
+            <br/>
+            <br/>
+            - D3 could theoretically be a problem if you are concerned about the size of your file, without optimizations it can
+            be rendering over 70+ KB of code, which can lead to worse SEO results
+            <br>
+            - If we don't want to expose our csv or data to the user, we shouldn't be using a client facing library to render graphs,
+            and it may be better to do all of our graph-related work on the backend so users only can see what we show them
+            <br>
+            - D3 was created at a time when websites were rendered through the DOM and libaries like jquery reigned supreme. Over the
+            last 10 years, a lot has changed in modern web applications, and most modern applications use a tool like REACT to interact
+            with a virtual DOM to update state. Under these instances, using D3 could prove problematic when trying to use these two
+            tools together.
+            <br/> 
+            <br/>
+            4) Evaluate the accessibility of your dashboard based on the readings in the “Before you begin” section.
+            What kinds of users might find this dashboard accessible and who might have more difficulty? What additional
+            actions might you take to make this dashboard more accessible to all audiences? Your response should refer
+            to at least one of the readings and be about 1 paragraph.
+            <br/> 
+            <br/>
+            I spent a decent amount of time ensure that color blind users would be able to effectively read my graphs. In particular,
+            I made sure to use coolors.co and other online resources to make graphs based on different shades of the same color to
+            ensure that users can effectively distinguish between colors. Additionally, all of my graphs are very well labelled, with
+            tooltips available on the two left-hand graphs as well to effectively ensure they can read any information that users could
+            theoretically have issues with visually. I did not, however, take advantage of assistive technology (as mentioned in the
+            Schepers reading), and this may make it more diffiuclt for blind internet-users to parse through my data. Fortunately, most
+            of my graphs are very well labelled, but without "alt text" descriptions these users will most likely have a more difficult
+            time interpreting my data.  
+            <br/>
+            <br/>
+            5) Reflect on the stages of your design and implementation process when you could have taken steps to make your
+            dashboard more accessible to all audiences. What are some factors that kept you from taking these steps? (a
+            few sentences)
+            <br/> 
+            <br/>
+            Again, providing alt text descriptions could have been a good step to make my dashboard more accessible for all audiences.
+            A few factors kept me from taking these steps. Primarily, I wanted to ensure I could build a map graph and complete the
+            assignment in time. With more time, I could go back to complete these steps, but given the time crunch and since this is
+            my first time building something with D3 I didn't want to take unnecesary risks with regards to producing working code in
+            the proper time frame.  
+            <br/>
+            <br/>
+            <b>Extra Credit:</b> on the 'Top 10 Video Games in year' graph, there is a tooltip available that displays the
+            percentage of sales relative to total sales for all video games sold. I did this to provide the user
+            with a deeper understanding of how 'dominant' a game was in comparison to other games of that year. For example,
+            in 1990, Super Mario World comprised over 40% of all video game sales of that year. This is statistical because
+            it is calculating the percentile breakdowns for a particular product for each year (was also approved on piazza). 
+        </div>
+    </div>
     <!--Feel free to add more JavaScript files as needed-->
     <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="graph_bar.js"></script>
+    <script type="text/javascript" src="graph_map.js"></script>
+    <script type="text/javascript" src="graph_lollipop.js"></script>
+    <script type="text/javascript" src="country_data.js"></script>
 </body>
 </html>
